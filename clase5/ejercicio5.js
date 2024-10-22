@@ -13,6 +13,37 @@ const pizzas = [
 // Array para armazenar as pizzas que o usuário seleciona.
 let pizzasSelecionadas = [];
 
+
+
+//funcao para veriricar se alguma pizza selecionada tem queijo 
+
+function verificarAlgunaPizzaConQueso() {
+    const tenQueso = pizzasSelecionadas.some(pizzas => pizzas.base === 'queso');
+    alert(tenQueso ? 'alguna pizza selecionada ten queso' : 'ninguna pizza selecionada ten queso' );
+}
+
+//funcao para verificar todas as pizzas acima de 10 euros usando every
+function verificarValorAcimade10() {
+    const todasAcimaDe10 = pizzasSelecionadas.every(pizzas => pizzas.precio > 10);
+    alert(todasAcimaDe10 ? 'Todas las pizzas selecionadas estan acima de 10 euros' : 'Nem todas as pizzas selecionadas custam mais de 10 euros')
+}
+
+//funcao para verificar se uma pizza foi selecionada
+function verificarPizzaIncluida(nomePizza) {
+    const nomesDasPizzasSelecionada = pizzasSelecionadas.map(pizzas => pizzas.nombre);
+    const estaIncluida = nomesDasPizzasSelecionada.includes(nomePizza);
+    alert(estaIncluida ? 'A pizza Margherita esta incluida' : 'A pizza Margherita no esta incluida')
+
+
+}
+
+
+// Adicionar botões de exemplo no HTML para chamar essas funções
+document.getElementById('button-verificarQueso').onclick = verificarAlgunaPizzaConQueso;
+document.getElementById('button-verificarTodasAcimaDe10').onclick = verificarValorAcimade10;
+document.getElementById('button-verificarMargherita').onclick = () => verificarPizzaIncluida('Margherita')
+
+
 // Função para adicionar uma pizza selecionada ao array de pizzasSelecionadas
 function anadirPizza(numeroPizza) {
     // Encontra a pizza no array 'pizzas' que corresponde ao número fornecido.
@@ -43,6 +74,9 @@ function exibirPizzasSelecionadas() {
         `;
     });
 }
+
+
+
 
 function removerPizza(index) {
     pizzasSelecionadas.splice(index, 1); // Remove a pizza do array
